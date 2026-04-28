@@ -269,8 +269,16 @@
       <div class="step-dot"></div>
     </div>
     <p style="font-size:16px; font-weight:700; color:#333; margin-bottom:4px;">계정 설정</p>
-    <p style="font-size:12px; color:#999; margin-bottom:24px;">로그인에 사용할 비밀번호를 설정해주세요.</p>
+    <p style="font-size:12px; color:#999; margin-bottom:24px;">로그인에 사용할 ID, 비밀번호를 설정해주세요</p>
 
+    <div class="field">
+      <label>ID</label>
+      <div class="input-wrap">
+        <span class="icon">👤</span>
+        <input type="text" id="signupId" placeholder="ID 입력 (영문, 숫자 4자 이상)">
+      </div>
+      <div class="pw-rules" id="idRules">영문, 숫자 조합 4자 이상</div>
+    </div>
     <div class="field">
       <label>비밀번호</label>
       <div class="input-wrap">
@@ -386,8 +394,10 @@ function goStep(n) {
     if (phone.length < 10) { showToast('휴대폰 번호를 입력해주세요.'); return; }
   }
   if (n === 3) {
+    const id = document.getElementById('signupId').value.trim();
     const pw = document.getElementById('signupPw').value;
     const pwc = document.getElementById('signupPwConfirm').value;
+    if (!/^[a-zA-Z0-9]{4,}$/.test(id)) { showToast('ID는 영문, 숫자 조합 4자 이상이어야 합니다.'); return; }
     if (pw.length < 8) { showToast('비밀번호는 8자 이상이어야 합니다.'); return; }
     if (pw !== pwc) { showToast('비밀번호가 일치하지 않습니다.'); return; }
   }
