@@ -190,14 +190,14 @@
       <label>ID</label>
       <div class="input-wrap">
         <span class="icon">👤</span>
-        <input type="tel" id="phoneInput" placeholder="영문, 숫자 조합 4자 이상" maxlength="11">
+        <input type="tel" id="phoneInput" placeholder="영문, 숫자 4자 이상" maxlength="11">
       </div>
     </div>
     <div class="field">
       <label>ID 비밀번호</label>
       <div class="input-wrap">
         <span class="icon">🔒</span>
-        <input type="password" id="pwInput" placeholder="비밀번호(필수)">
+        <input type="password" id="pwInput" placeholder="영문, 숫자, 특수문자 포함 8자 이상">
         <button class="toggle-pw" onclick="togglePassword('pwInput', this)">👁</button>
       </div>
     </div>
@@ -277,7 +277,7 @@
         <span class="icon">👤</span>
         <input type="text" id="signupId" placeholder="ID 입력">
       </div>
-      <div class="pw-rules" id="idRules">영문, 숫자 조합 4자 이상</div>
+      <div class="pw-rules" id="idRules">영문, 숫자 4자 이상</div>
     </div>
     <div class="field">
       <label>비밀번호</label>
@@ -397,7 +397,7 @@ function goStep(n) {
     const id = document.getElementById('signupId').value.trim();
     const pw = document.getElementById('signupPw').value;
     const pwc = document.getElementById('signupPwConfirm').value;
-    if (!/^[a-zA-Z0-9]{4,}$/.test(id)) { showToast('ID는 영문, 숫자 조합 4자 이상이어야 합니다.'); return; }
+    if (!/^[a-zA-Z0-9]{4,}$/.test(id)) { showToast('ID는 영문, 숫자 4자 이상이어야 합니다.'); return; }
     if (pw.length < 8) { showToast('비밀번호는 8자 이상이어야 합니다.'); return; }
     if (pw !== pwc) { showToast('비밀번호가 일치하지 않습니다.'); return; }
   }
