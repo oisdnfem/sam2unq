@@ -190,7 +190,7 @@
       <label>ID</label>
       <div class="input-wrap">
         <span class="icon">👤</span>
-        <input type="tel" id="phoneInput" placeholder="영문, 숫자 4자 이상" maxlength="11">
+        <input type="text" id="phoneInput" placeholder="영문, 숫자 4자 이상" autocomplete="username" autocapitalize="off" autocorrect="off" spellcheck="false" inputmode="text" lang="en">
       </div>
     </div>
     <div class="field">
@@ -275,7 +275,7 @@
       <label>ID</label>
       <div class="input-wrap">
         <span class="icon">👤</span>
-        <input type="text" id="signupId" placeholder="ID 입력">
+        <input type="text" id="signupId" placeholder="ID 입력" autocomplete="username" autocapitalize="off" autocorrect="off" spellcheck="false" inputmode="text" lang="en">
       </div>
       <div class="pw-rules" id="idRules">영문, 숫자 4자 이상</div>
     </div>
@@ -469,13 +469,23 @@ function showToast(msg) {
 function handleLogin() {
   const phone = document.getElementById('phoneInput').value.trim();
   const pw = document.getElementById('pwInput').value.trim();
-  if (!phone) { showToast('휴대폰 번호를 입력해주세요.'); return; }
+  if (!phone) { showToast('ID를 입력해주세요.'); return; }
   if (!pw) { showToast('비밀번호를 입력해주세요.'); return; }
   showToast('ID와 비밀번호가 일치하지 않습니다.');
 }
 
 document.querySelectorAll('input[type="tel"]').forEach(el => {
   el.addEventListener('input', function() { this.value = this.value.replace(/[^0-9]/g, ''); });
+});
+
+// signupId, phoneInput: 한글 입력 차단 (영문, 숫자, 특수문자만 허용)
+['signupId', 'phoneInput'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.addEventListener('input', function() {
+      this.value = this.value.replace(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
+    });
+  }
 });
 
 document.getElementById('signupGender').addEventListener('change', function() {
